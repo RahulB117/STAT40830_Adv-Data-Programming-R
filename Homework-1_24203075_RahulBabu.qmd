@@ -1,0 +1,58 @@
+---
+title: "Quarto_Homework_Task"
+author: "Rahul Babu"
+format:
+  pdf:
+    code-block: false
+execute:
+  echo: false
+editor: visual
+---
+
+# The MTCars Dataset
+
+## Description:
+
+The mtcars data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+### Step 1: Load the Mass package and view first few entries
+
+```{r}
+#| label: Loader
+#| warning: False
+#| message: False
+library(MASS)
+library(ggplot2)
+library(knitr)
+library(dplyr)
+
+head(mtcars) |>
+  kable(caption = "Table 1: First 6 Rows of the mtcars Dataset")
+```
+
+From the tabulation of the first few entries of the `mtcars` dataset, we can make the following observations:
+
+-   Each row corresponds to a different car model and includes specifications such as miles per gallon, number of cylinders, horsepower, weight, and transmission type.
+
+-   These variables provide a basis for analyzing automobile performance characteristics of cars from the 1970s.
+
+### Step 2: Display a scatterplot of horsepower vs mpg with respect to cylinders
+
+```{r}
+#| label: Plot_Block
+ggplot(mtcars, aes(x = hp, y = mpg, color = factor(cyl))) +
+  geom_point(size = 3) +
+  labs(
+    title = "Horsepower vs. MPG in mtcars Dataset",
+    x = "Horsepower (hp)",
+    y = "Miles Per Gallon (mpg)",
+    color = "Cylinders"
+  ) +
+  theme_minimal()
+```
+
+From the scatter-plot, we can make the following observations:
+
+-   A clear negative trend is visible. Cars with higher horsepower tend to have lower miles per gallon.
+
+-   Vehicles with 8 cylinders cluster in the high horsepower, low mpg range, while 4-cylinder cars dominate the high-efficiency, lower horsepower zone.
