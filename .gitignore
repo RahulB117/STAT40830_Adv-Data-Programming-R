@@ -1,0 +1,7 @@
+# Ignore rendered pdf files
+*.pdf
+
+# Ignore temporary files
+.Rproj.user/
+.RData
+.Rhistory
