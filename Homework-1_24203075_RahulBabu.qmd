@@ -56,3 +56,23 @@ From the scatter-plot, we can make the following observations:
 -   A clear negative trend is visible. Cars with higher horsepower tend to have lower miles per gallon.
 
 -   Vehicles with 8 cylinders cluster in the high horsepower, low mpg range, while 4-cylinder cars dominate the high-efficiency, lower horsepower zone.
+
+### Example from MTCars documentation:
+
+```{r}
+#| label: Example_From_mtcars
+
+require(graphics)
+pairs(mtcars, main = "mtcars data", gap = 1/4)
+coplot(mpg ~ disp | as.factor(cyl), data = mtcars,
+       panel = panel.smooth, rows = 1)
+## possibly more meaningful, e.g., for summary() or bivariate plots:
+mtcars2 <- within(mtcars, {
+   vs <- factor(vs, labels = c("V", "S"))
+   am <- factor(am, labels = c("automatic", "manual"))
+   cyl  <- ordered(cyl)
+   gear <- ordered(gear)
+   carb <- ordered(carb)
+})
+summary(mtcars2)
+```
